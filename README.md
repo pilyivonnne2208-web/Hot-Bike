@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bicicletas & Amor — Para mi enamorado</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#ff6fa3;
+      --accent2:#6ec1ff;
+      --muted:#b5bfd1;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Poppins', sans-serif;
+      background:radial-gradient(circle at top,#1a2238 0%,#0a1124 100%);
+      color:#f1f5fa;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    /* Fondo con brillos */
+    body::before{
+      content:"";
+      position:fixed;inset:0;
+      background-image:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,0.6),transparent),
+                       radial-gradient(2px 2px at 70% 80%,rgba(255,255,255,0.4),transparent),
+                       radial-gradient(2px 2px at 50% 50%,rgba(255,255,255,0.7),transparent),
+                       radial-gradient(1.5px 1.5px at 90% 20%,rgba(255,255,255,0.5),transparent);
+      background-repeat:repeat;
+      animation:twinkle 6s infinite alternate;
+      z-index:-1;
+    }
+    @keyframes twinkle{
+      from{opacity:0.6} to{opacity:1}
+    }
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:20px 28px;
+      background:linear-gradient(90deg,rgba(255,111,163,0.1),rgba(110,193,255,0.08));
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:50%;
+      background:radial-gradient(circle,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:20px;color:white;
+      box-shadow:0 0 12px rgba(255,111,163,0.6);
+    }
+    h1{margin:0;font-size:22px;color:var(--accent)}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+    main{padding:28px;max-width:1100px;margin:0 auto}
+    .hero{display:flex;gap:24px;align-items:center;margin-bottom:28px}
+    .hero .info{flex:1}
+    .big-image{flex:0 0 380px;border-radius:16px;overflow:hidden;border:2px solid rgba(255,255,255,0.06);box-shadow:0 6px 20px rgba(0,0,0,0.4)}
+    .big-image img{width:100%;height:280px;object-fit:cover}
+    .love{
+      margin-top:14px;padding:16px;border-radius:14px;
+      background:linear-gradient(135deg,rgba(255,111,163,0.15),rgba(110,193,255,0.12));
+      border:1px solid rgba(255,255,255,0.05);
+      font-style:italic;
+      font-size:15px;
+      color:#ffe1ec;
+      box-shadow:inset 0 0 8px rgba(255,111,163,0.25);
+    }
+    h2{color:var(--accent);margin-bottom:10px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
+      border-radius:16px;padding:14px;
+      border:1px solid rgba(255,255,255,0.04);
+      backdrop-filter:blur(4px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      transition:transform 0.2s;
+    }
+    .card:hover{transform:translateY(-4px)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:12px}
+    .card h3{margin:10px 0 6px;font-size:17px;color:#fff}
+    .card p{margin:0;font-size:13px;color:var(--muted)}
+    .btn{
+      display:inline-block;margin-top:10px;padding:8px 14px;border-radius:12px;
+      background:var(--accent);color:#081226;font-weight:600;text-decoration:none;
+      box-shadow:0 3px 8px rgba(255,111,163,0.4);
+      cursor:pointer;
+    }
+    footer{padding:28px;text-align:center;color:var(--muted);font-size:14px}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:50}
+    .modal.active{display:flex}
+    .modal-card{width:90%;max-width:720px;background:linear-gradient(180deg,#0f172a,#1e293b);padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    .modal-card img{width:100%;height:320px;object-fit:cover;border-radius:12px}
+    .close{background:transparent;border:0;color:var(--muted);font-weight:600;cursor:pointer}
+    .surprise-message{
+      margin-top:20px;
+      padding:18px;
+      background:linear-gradient(135deg,rgba(255,111,163,0.2),rgba(110,193,255,0.15));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:14px;
+      color:#ffeaf4;
+      font-size:16px;
+      text-align:center;
+      font-style:italic;
+      display:none;
+      animation:fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:720px){.hero{flex-direction:column}.big-image{width:100%}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">💖</div>
+      <div>
+        <h1>Bicicletas & Amor</h1>
+        <p class="lead">Un paseo romántico sobre dos ruedas</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#" class="btn" id="openSurprise">Frase de amor</a>
+      <a href="#" class="btn" id="specialBtn">Sorpresa 💌</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="info">
+        <h2>Para ti, mi amor</h2>
+        <p class="lead">Cada pedaleada contigo es un recuerdo eterno, cada ruta una historia que guardo en mi corazón.</p>
+        <div class="love">
+          "Tú eres mi mejor destino, incluso cuando el camino es cuesta arriba."
+        </div>
+        <div id="surpriseMsg" class="surprise-message"></div>
+      </div>
+      <div class="big-image">
+        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1200&q=60" alt="Bicicleta romantica">
+      </div>
+    </section>
+
+    <section>
+      <h2>Bicicletas de ensueño</h2>
+      <div class="grid" id="gallery"></div>
+    </section>
+  </main>
+
+  <footer>
+    Creada con 💕 para ti. Porque el amor también se pedalea.
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <button class="close" id="closeModal">Cerrar ✕</button>
+      <img id="modalImg" src="" alt="Detalle bicicleta">
+      <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h3 id="modalTitle">Título bicicleta</h3>
+          <p id="modalDesc" style="color:var(--muted)">Descripción</p>
+        </div>
+        <a id="modalAction" class="btn" href="#">Ver más</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const bikes = [
+      {title:'Clásica Romántica',desc:'Un paseo al atardecer contigo es el paraíso.',img:'https://images.unsplash.com/photo-1518655048521-f130df041f66?auto=format&fit=crop&w=800&q=60'},
+      {title:'Speed Amore',desc:'A tu lado, las rutas largas parecen cortas.',img:'https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=60'},
+      {title:'Urbana Cómplíce',desc:'Para llevar flores, cartas y todo mi amor.',img:'https://images.unsplash.com/photo-1595435934249-5d5fca2e8c0b?auto=format&fit=crop&w=800&q=60'},
+      {title:'Montaña Corazón',desc:'Juntos conquistamos cualquier camino difícil.',img:'https://images.unsplash.com/photo-1507831228882-6e08c6a0f91e?auto=format&fit=crop&w=800&q=60'},
+      {title:'Fixie Susurro',desc:'Sencilla, como tu risa que me enamora.',img:'https://images.unsplash.com/photo-1595433707802-6a48e8ec27cf?auto=format&fit=crop&w=800&q=60'},
+      {title:'Tándem Recuerdo',desc:'En esta vamos los dos, siempre juntos.',img:'https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=800&q=60'}
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalAction = document.getElementById('modalAction');
+    const closeModal = document.getElementById('closeModal');
+
+    function makeCard(bike){
+      const el = document.createElement('div'); el.className='card';
+      el.innerHTML = `
+        <img src="${bike.img}" alt="${bike.title}">
+        <h3>${bike.title}</h3>
+        <p>${bike.desc}</p>
+        <a class="btn" href="#" data-title="${bike.title}" data-img="${bike.img}" data-desc="${bike.desc}">Ver detalle</a>
+      `;
+      gallery.appendChild(el);
+    }
+
+    bikes.forEach(makeCard);
+
+    gallery.addEventListener('click', (e)=>{
+      const a = e.target.closest('a'); if(!a) return;
+      e.preventDefault();
+      modalImg.src=a.dataset.img; modalTitle.textContent=a.dataset.title; modalDesc.textContent=a.dataset.desc; modalAction.href=a.dataset.img;
+      modal.classList.add('active');
+    });
+
+    closeModal.addEventListener('click', ()=> modal.classList.remove('active'));
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('active') });
+
+    document.getElementById('openSurprise').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const frases = [
+        'Tu amor es la rueda que me impulsa.',
+        'Si la vida es un camino, tú eres mi destino.',
+        'A tu lado no existen pendientes imposibles.',
+        'Cada ruta contigo termina en mi corazón.',
+        'Eres el viaje más bonito que emprenderé.'
+      ];
+      const f = frases[Math.floor(Math.random()*frases.length)];
+      alert(f);
+      document.querySelector('.love').textContent = '"'+f+'"';
+    });
+
+    document.getElementById('specialBtn').addEventListener('click',(e)=>{
+      e.preventDefault();
+      const msg = document.getElementById('surpriseMsg');
+      const mensajes = [
+        'Eres mi pedal favorito en este viaje llamado vida.',
+        'Nuestro amor es como una bici: equilibrio, fuerza y movimiento.',
+        'Cada latido de mi corazón suena como una campanilla de bicicleta contigo.',
+        'Si pudiera elegir, te elegiría en cada ruta, siempre.',
+        'Nuestro destino siempre será juntos, pedaleando de la mano.'
+      ];
+      const randomMsg = mensajes[Math.floor(Math.random()*mensajes.length)];
+      msg.textContent = randomMsg;
+      msg.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
